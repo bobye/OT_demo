@@ -25,16 +25,16 @@ Pi1=full(Pi1);
 %subplot_tight(4,6,1+(s-1)*5); imshow(-Pi1, []);
 
 
-%% alternating Bregman projection: Sinkhorn distance
+%% iterative Bregman projection: Sinkhorn distance
 tic;
-[V2, Pi2] = OptimalTransport_ABP_Sinkhorn(C, w1, w2, .1/N, max_iters(s));
+[V2, Pi2] = OptimalTransport_IBP_Sinkhorn(C, w1, w2, .1/N, max_iters(s));
 toc;
 subplot_tight(6,4,1+(s-1)*4); imshow(addframe(imfuse(-Pi2, -Pi1)));
 
-[V2, Pi2] = OptimalTransport_ABP_Sinkhorn(C, w1, w2, .5/N, max_iters(s));
+[V2, Pi2] = OptimalTransport_IBP_Sinkhorn(C, w1, w2, .5/N, max_iters(s));
 subplot_tight(6,4,2+(s-1)*4); imshow(addframe(imfuse(-Pi2, -Pi1)));
 
-[V2, Pi2] = OptimalTransport_ABP_Sinkhorn(C, w1, w2, 2./N, max_iters(s));
+[V2, Pi2] = OptimalTransport_IBP_Sinkhorn(C, w1, w2, 2./N, max_iters(s));
 subplot_tight(6,4,3+(s-1)*4); imshow(addframe(imfuse(-Pi2, -Pi1)));
 
 %% Bregman ADMM

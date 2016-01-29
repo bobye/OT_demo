@@ -1,4 +1,4 @@
-function [V, Pi] = OptimalTransport_ABP_Sinkhorn(C, W1, W2, rho, max_iter)
+function [V, Pi] = OptimalTransport_IBP_Sinkhorn(C, W1, W2, rho, max_iter)
 
 n = size(W1,1);
 m = size(W2,1);
