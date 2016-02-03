@@ -12,11 +12,13 @@ C=pdist2(locations, locations).^2;
 plot(locations, w1); hold on
 plot(locations, w2);
 
-figure;
+
 max_iters=[1, 10, 50, 200, 1000, 5000];
 
-OptimalTransport_LPServer;
 
+%% 
+OptimalTransport_LPServer;
+figure;
 
 for s=1:6
 %% linear programming
