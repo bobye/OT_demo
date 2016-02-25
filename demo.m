@@ -20,9 +20,11 @@ max_iters=[1, 10, 50, 200, 1000, 5000];
 OptimalTransport_LPServer;
 figure;
 
+nm=5; %number of methods
+
 for s=1:6
 %% linear programming
-[~, V1, Pi1, ~] = OptimalTransport_LP(C, w1, w2);
+[~, V1, Pi1, ~] = OptimalTransport_LP(C, w1, w2); 
 Pi1=full(Pi1); 
 %subplot_tight(4,6,1+(s-1)*5); imshow(-Pi1, []);
 
@@ -31,23 +33,26 @@ Pi1=full(Pi1);
 tic;
 [V2, Pi2] = OptimalTransport_IBP_Sinkhorn(C, w1, w2, .1/N, max_iters(s));
 toc;
-subplot_tight(6,4,1+(s-1)*4); imshow(addframe(imfuse(-Pi2, -Pi1)));
+subplot_tight(6,nm,1+(s-1)*nm); imshow(addframe(imfuse(-Pi2, -Pi1)));
 
 [V2, Pi2] = OptimalTransport_IBP_Sinkhorn(C, w1, w2, .5/N, max_iters(s));
-subplot_tight(6,4,2+(s-1)*4); imshow(addframe(imfuse(-Pi2, -Pi1)));
+subplot_tight(6,nm,2+(s-1)*nm); imshow(addframe(imfuse(-Pi2, -Pi1)));
 
 [V2, Pi2] = OptimalTransport_IBP_Sinkhorn(C, w1, w2, 2./N, max_iters(s));
-subplot_tight(6,4,3+(s-1)*4); imshow(addframe(imfuse(-Pi2, -Pi1)));
+subplot_tight(6,nm,3+(s-1)*nm); imshow(addframe(imfuse(-Pi2, -Pi1)));
 
 %% Bregman ADMM
 rho=2.*mean(C(:));
 tic;
 [V3, Pi3] = OptimalTransport_BADMM(C, w1, w2, rho, max_iters(s));
 toc;
-subplot_tight(6,4,4+(s-1)*4); imshow(addframe(imfuse(-Pi3, -Pi1)));
+subplot_tight(6,nm,4+(s-1)*nm); imshow(addframe(imfuse(-Pi3, -Pi1)));
 
-
+%% Simulated Annealing
+tic;
+[V4, Pi4, F4] = OptimalTransport_Simulated_Annealing(C, w1, w2, 2./N, max_iters(s));
+toc;
+subplot_tight(6,nm,5+(s-1)*nm); imshow(addframe(imfuse(-Pi4, -Pi1)));
 end
-tightfig;
 
 
