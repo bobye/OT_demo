@@ -11,3 +11,6 @@ Methods:
 - Linear programming by Mosek
 - Simulated annealing using Gibbs sampling [Ye et al. 2017]
 
+How-to:
+
+Please try to run the script `demo.m`, where you can play the hyper-parameters to see different results. 
