@@ -1,1 +1,13 @@
 # OT_demo
+
+
+This demo includes several implementations of common approximate optimal transport methods. 
+
+Methods:
+
+- Sinkhorn algorithm [Cuturi, 2013]
+- Bregman ADMM [Wand and Banerjee, 2014] [Ye et al. 2017]
+- Mirror descent (experimental)
+- Linear programming by Mosek
+- Simulated annealing using Gibbs sampling [Ye et al. 2017]
+
